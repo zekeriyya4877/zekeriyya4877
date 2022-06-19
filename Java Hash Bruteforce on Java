@@ -1,0 +1,298 @@
+package tutorial1;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
+import java.math.BigInteger;
+
+
+public class Main {
+	
+	
+	public static void main(String[] args) throws NoSuchAlgorithmException {
+		int n,i,l,a,b,c,d,e,f,g,h,chc;
+		System.out.print("Type all possible characters in your password (example:efref94e49+=:;)\nhere:");
+		Scanner sc=new Scanner(System.in);
+		String strk=sc.next();
+		n=strk.length();
+		String[] p=new String[n];
+		for(int qq=0;qq<n;qq+=1) {
+		char k=strk.charAt(qq);
+		p[qq]=String.valueOf(k);
+		}
+		int count=0;
+		for(i=0;i<n;i+=1) {
+		System.out.println("c"+(i+1)+"="+p[i]);
+		}
+		System.out.print("enter a number n to check all possible passwords with n characters:");
+		l=sc.nextInt();
+		switch(l)
+		{
+		case 1:for(a=0;a<n;a+=1) {
+		count+=1;
+		}
+		System.out.println("number of possible passwords:"+count);
+		String passwords1[]=new String[count];
+		int ii=0;
+		for(a=0;a<n;a+=1) {
+		passwords1[ii]=p[a];
+	    ii+=1;
+		}
+		System.out.println("Enter your SHA256 hash:");
+		Scanner s1=new Scanner(System.in);
+		String hash1=s1.nextLine();
+		hash1=hash1.toUpperCase();
+		for(int tz=0;tz<ii;tz+=1) {
+		    String aqa=passwords1[tz];
+		     String wer=SHA(aqa);
+		     if(wer.equals(hash1)) {
+		    System.out.println("the password is:"+aqa);
+		     }
+		    }
+		break;
+		case 2:for(a=0;a<n;a+=1) {
+		for(b=0;b<n;b+=1)
+		{count+=1;
+		}
+		}
+		System.out.println("number of possible passwords:"+count);
+		String passwords2[]=new String[count];
+		int ff=0;
+		for(a=0;a<n;a+=1) {
+		for(b=0;b<n;b+=1)
+	    {
+		passwords2[ff]=p[a]+p[b];
+	    ff+=1;
+		}
+		}
+		System.out.println("Enter your SHA256 hash:");
+		Scanner s2=new Scanner(System.in);
+		String hash2=s2.nextLine();
+		hash2=hash2.toUpperCase();
+		for(int tz=0;tz<ff;tz+=1) {
+	    String aqa=passwords2[tz];
+	     String wer=SHA(aqa);
+	     if(wer.equals(hash2)) {
+	    System.out.println("the password is:"+aqa);
+	     }
+	    }
+		break;
+		case 3:for(a=0;a<n;a+=1) {
+		for(b=0;b<n;b+=1)
+		{
+		for(c=0;c<n;c+=1) {
+		count+=1;
+		}
+		}
+		}	
+		System.out.println("number of possible passwords:"+count);
+		String passwords3[]=new String[count];
+		int gg=0;
+		for(a=0;a<n;a+=1) {
+		for(b=0;b<n;b+=1)
+		{
+		for(c=0;c<n;c+=1) {
+		passwords3[gg]=p[a]+p[b]+p[c];
+		gg+=1;
+		}
+		}
+		}
+		System.out.println("Enter your SHA256 hash:");
+		Scanner s3=new Scanner(System.in);
+		String hash3=s3.nextLine();
+		hash3=hash3.toUpperCase();
+		for(int tz=0;tz<gg;tz+=1) {
+	    String aqa=passwords3[tz];
+	     String wer=SHA(aqa);
+	     if(wer.equals(hash3)) {
+	    System.out.println("the password is:"+aqa);
+	     }
+	    }
+		break;
+		case 4:for(a=0;a<n;a+=1) {
+		for(b=0;b<n;b+=1)
+		{
+		for(c=0;c<n;c+=1) {
+		for(d=0;d<n;d+=1) {
+		count+=1;
+		}
+		}
+		}
+		}
+		System.out.println("number of possible passwords:"+count);
+		String passwords4[]=new String[count];
+		int hh=0;
+		for(a=0;a<n;a+=1) {
+		for(b=0;b<n;b+=1)
+		{
+		for(c=0;c<n;c+=1) {
+		for(d=0;d<n;d+=1) {
+		passwords4[hh]=p[a]+p[b]+p[c]+p[d];
+		hh+=1;
+		}
+		}
+		}
+		}
+		System.out.println("Enter your SHA256 hash:");
+		Scanner s4=new Scanner(System.in);
+		String hash4=s4.nextLine();
+		hash4=hash4.toUpperCase();
+		for(int tz=0;tz<hh;tz+=1) {
+	    String aqa=passwords4[tz];
+	     String wer=SHA(aqa);
+	     if(wer.equals(hash4)) {
+	    System.out.println("the password is:"+aqa);
+	     }
+	    }
+		
+		break;
+		case 5:for(a=0;a<n;a+=1) {
+		for(b=0;b<n;b+=1)
+		{
+		for(c=0;c<n;c+=1) {
+		for(d=0;d<n;d+=1) {
+		for(e=0;e<n;e+=1) {
+		count+=1;
+		}
+		}
+		}
+		}
+		}
+		System.out.println("number of possible passwords:"+count);
+		String passwords5[]=new String[count];
+		int ee=0;
+		for(a=0;a<n;a+=1) {
+		for(b=0;b<n;b+=1)
+		{
+		for(c=0;c<n;c+=1) {
+		for(d=0;d<n;d+=1) {
+		for(e=0;e<n;e+=1) {
+		passwords5[ee]=p[a]+p[b]+p[c]+p[d]+p[e];
+		ee+=1;
+		}
+		}
+		}
+		}
+		}
+		System.out.println("Enter your SHA256 hash:");
+		Scanner s5=new Scanner(System.in);
+		String hash5=s5.nextLine();
+		hash5=hash5.toUpperCase();
+		for(int tz=0;tz<ee;tz+=1) {
+	    String aqa=passwords5[tz];
+	     String wer=SHA(aqa);
+	     if(wer.equals(hash5)) {
+	    System.out.println("the password is:"+aqa);
+	     }
+	    }
+		break;
+		case 6:for(a=0;a<n;a+=1) {
+		for(b=0;b<n;b+=1)
+		{
+		for(c=0;c<n;c+=1) {
+		for(d=0;d<n;d+=1) {
+		for(e=0;e<n;e+=1) {
+	    for(f=0;f<n;f+=1) {
+	    count+=1;
+	    }
+		}
+		}
+		}
+		}
+		}
+		System.out.println("number of possible passwords:"+count);
+		String passwords6[]=new String[count];
+		int zz=0;
+		for(a=0;a<n;a+=1) {
+		for(b=0;b<n;b+=1)
+		{
+		for(c=0;c<n;c+=1) {
+		for(d=0;d<n;d+=1) {
+		for(e=0;e<n;e+=1) {
+		for(f=0;f<n;f+=1) {
+		passwords6[zz]=p[a]+p[b]+p[c]+p[d]+p[e]+p[f];
+		zz+=1;
+		}
+	    }
+		}
+		}
+		}
+		}	
+		System.out.println("Enter your SHA256 hash:");
+		Scanner s6=new Scanner(System.in);
+		String hash6=s6.nextLine();
+		hash6=hash6.toUpperCase();
+		for(int tz=0;tz<zz;tz+=1) {
+	    String aqa=passwords6[tz];
+	     String wer=SHA(aqa);
+	     if(wer.equals(hash6)) {
+	    System.out.println("the password is:"+aqa);
+	     }
+	    }
+		break;
+		case 7:for(a=0;a<n;a+=1) {
+		for(b=0;b<n;b+=1)
+		{
+		for(c=0;c<n;c+=1) {
+		for(d=0;d<n;d+=1) {
+		for(e=0;e<n;e+=1) {
+	    for(f=0;f<n;f+=1) {
+	    for(g=0;g<n;g+=1) {
+	    count+=1;
+	    }
+	    }
+		}
+		}
+		}
+		}
+		}
+		System.out.println("number of possible passwords:"+count);
+		String passwords7[]=new String[count];
+		int yy=0;
+		for(a=0;a<n;a+=1) {
+		for(b=0;b<n;b+=1)
+		{
+		for(c=0;c<n;c+=1) {
+		for(d=0;d<n;d+=1) {
+		for(e=0;e<n;e+=1) {
+	    for(f=0;f<n;f+=1) {
+	    for(g=0;g<n;g+=1) {
+	    passwords7[yy]=p[a]+p[b]+p[c]+p[d]+p[e]+p[f]+p[g];
+	    yy+=1;
+	    }
+		}
+		}
+		}
+		}
+		}
+		}
+		System.out.println("Enter your SHA256 hash:");
+		Scanner s7=new Scanner(System.in);
+		String hash7=s7.nextLine();
+		hash7=hash7.toUpperCase();
+		for(int tz=0;tz<yy;tz+=1) {
+	    String aqa=passwords7[tz];
+	     String wer=SHA(aqa);
+	     if(wer.equals(hash7)) {
+	    System.out.println("the password is:"+aqa);
+	     }
+	    }
+		break;
+		}
+				
+		
+
+
+	}
+	public static String SHA(String aay) throws NoSuchAlgorithmException {
+		MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
+		byte hashBytes[] = messageDigest.digest(aay.getBytes(StandardCharsets.UTF_8));
+		BigInteger noHash = new BigInteger(1, hashBytes);
+		String hashStr = noHash.toString(16);
+		hashStr=hashStr.toUpperCase();
+		
+		return hashStr;
+	}
+	
+}
