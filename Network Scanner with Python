@@ -1,0 +1,26 @@
+import scapy.all as scapy
+import optparse
+import sys
+
+def get_inputs():
+    parse_object = optparse.OptionParser()
+    parse_object.add_option("-i", "--interface", dest="interface")
+    parse_object.add_option("-r", "--range", dest="range")
+    (user_input, arguments) = parse_object.parse_args()
+
+    return parse_object.parse_args()
+
+def send_and_receive(interface, range):
+    arp_request_packet = scapy.ARP(pdst=range)
+    broadcast_packet = scapy.Ether(dst="ff:ff:ff:ff:ff:ff")
+    commbined_packed = broadcast_packet/arp_request_packet
+    (answered_list, unanswered_list) = scapy.srp(commbined_packed, timeout=10, iface=interface)
+    answered_list.summary()
+
+print("Network Scanner Started")
+
+(options, argument) = get_inputs()
+
+if not options.interface or not options.range:
+    print("[-] Please specify the interface and IP range to scan. Example:python3 Network_scanner.py -r 192.168.1.0/24 -i wlan0")
+    sys.exit(1)
